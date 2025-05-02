@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel = "stylesheet" href="pass.css">
+</head>
+<body>
+
+       <div class="container">
+      <div class="text11"> <p class="text1"><strong>Generate a </strong></p></div>
+       <br>
+       <div class="text12"><p class = "text2"><strong>Random Password </strong></p></div>
+       <div class="input">
+        <input type="text" class="inputbox" placeholder="Password">
+        <img src="copyicon.jpg" id="img" onclick = "copyPassword()">
+        
+        <br>
+       <button onclick = "guess()" class="button">
+          Generate Password
+       </button>
+    </div>
+       </div>
+
+    <script>
+    const inputbox = document.querySelector(".inputbox");
+    const length = 8;
+    const UpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const LowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const num = "0123456789"
+    const symbol = "!@#$%^&*(){}[]";
+    const alchar = LowerCase + UpperCase + symbol + num;
+    function guess(){
+        let password= "";
+        password += UpperCase[Math.floor(Math.random()*26)];
+        password += num[Math.floor(Math.random()*10)];
+        password += symbol[Math.floor(Math.random()*symbol.length)];
+        password += LowerCase[Math.floor(Math.random()*26)];
+        while(password.length<length){
+         password += alchar[Math.floor(Math.random() * alchar.length)];
+
+        }
+        inputbox.value = password;
+
+    }
+
+    function copyPassword(){
+          inputbox.select();
+          document.execCommand("copy");   
+          alert("Copied");
+         } 
+       </script>
+</body>
+</html>
